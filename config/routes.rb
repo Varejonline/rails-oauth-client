@@ -2,6 +2,11 @@ OauthClient::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  root :to => 'oauth#authorization'
+  
+  match 'oauth/authorization' => 'oauth#authorization'
+  match 'oauth/callback' => 'oauth#callback'
+  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
