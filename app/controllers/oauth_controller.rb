@@ -26,6 +26,7 @@ class OauthController < ApplicationController
       :headers => { 'Content-Type' => 'application/json' }
     }
     @parsed_response = HTTParty.post(VPSA_TOKEN_URL, options).parsed_response
+    session['access_token'] = @parsed_response['access_token']
   end
   
 end

@@ -1,12 +1,4 @@
-<h1>Login via OAuth 2.0</h1>
-<p>Seu usuário acabou de logar no VPSA e autorizar seu Aplicativo, seguem os dados dele:</p>
-<pre>
-{
-"access_token":<%= @parsed_response['access_token'] %>,
-"expires_in":<%= @parsed_response['expires_in'] %>,
-"refresh_token":<%= @parsed_response['refresh_token'] %>,
-"cnpj_empresa":<%= @parsed_response['cnpj_empresa'] %>,
-"id_terceiro":<%= @parsed_response['id_terceiro'] %>,
-"nome_terceiro":<%= @parsed_response['nome_terceiro'] %>
-}
-</pre>
+<h1>Login efetuado via OAuth 2.0</h1>
+<p>ID DO USUÁRIO: <%= @parsed_response['id_terceiro'] %></p>
+<p>NOME DO USUÁRIO: <%= @parsed_response['nome_terceiro'] %></p>
+<p>CNPJ DA EMPRESA: <%= @parsed_response['cnpj_empresa'] %></p>
