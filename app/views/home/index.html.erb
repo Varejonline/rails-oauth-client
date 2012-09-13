@@ -1,0 +1,22 @@
+<% if usuario_logado? %>
+	
+	<h2>O usuário autorizou seu aplicativo</h2>
+	<p>Retorno do VPSA:</p>
+	<pre>
+{
+	id_terceiro: <%= usuario[:id_terceiro] %>,
+	nome_terceiro: <%= usuario[:nome_terceiro] %>,
+	cnpj_empresa: <%= usuario[:cnpj_empresa] %>,
+	access_token: <%= usuario[:access_token] %>,
+	expires_in: <%= usuario[:expires_in] %>,
+	refresh_token: <%= usuario[:refresh_token] %>
+}
+	</pre>
+	<%= button_to "Sair", oauth_logout_path, :method => :delete %>
+	
+<% else %>
+	
+	<h2>O usuário ainda não autorizou seu aplicativo</h2>
+	<%= link_to "Pedir autorização", oauth_authorization_path %>
+	
+<% end %>

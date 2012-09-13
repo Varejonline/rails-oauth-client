@@ -25,8 +25,29 @@ class OauthController < ApplicationController
       }.to_json,
       :headers => { 'Content-Type' => 'application/json' }
     }
-    @parsed_response = HTTParty.post(VPSA_TOKEN_URL, options).parsed_response
-    session['access_token'] = @parsed_response['access_token']
+    response = HTTParty.post(VPSA_TOKEN_URL, options)
+    
+    parse_response(response.parsed_response) if response.success?
+       
+    render "home/index"
+  end
+  
+  def logout
+    session[:usuario] = nil
+    render "home/index"
+  end
+
+  private 
+  
+  def parse_response parsed_response
+    session[:usuario] = {
+      :access_token => parsed_response['access_token'],
+      :expires_in => parsed_response['expires_in'],
+      :refresh_token => parsed_response['refresh_token'],
+      :id_terceiro => parsed_response['id_terceiro'],
+      :nome_terceiro => parsed_response['nome_terceiro'],
+      :cnpj_empresa => parsed_response['cnpj_empresa']
+    }
   end
   
 end
